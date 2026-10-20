@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Guy Screen — sunscreen for men who forgot sunscreen existed. The cheapest looksmax there is. Join the waitlist." />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+    <title>Guy Screen — The Cheapest Looksmax There Is</title>
+    <style>
+      :root {
+        --orange: #ff5a1f;
+        --orange-dark: #d63f08;
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --panel-alt: #f3f1ec;
+        --ink: #0b0b0b;
+        --muted: #55534e;
+        --line: #0b0b0b;
+        --line-soft: #ddd9d2;
+        --black: #0b0b0b;
+        --white: #ffffff;
+        --on-black-muted: #b9b6b0;
+        --field-bg: #ffffff;
+        --error: #c22400;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0c0c0c;
+          --panel: #131313;
+          --panel-alt: #1a1a1a;
+          --ink: #f4f2ed;
+          --muted: #a8a49c;
+          --line: #f4f2ed;
+          --line-soft: #2e2e2e;
+          --field-bg: #1a1a1a;
+          --error: #ff7a52;
+        }
+        .logo-img { filter: invert(1); }
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Archivo", system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      img { max-width: 100%; display: block; }
+      .display {
+        font-family: "Anton", "Archivo", sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        line-height: 0.98;
+      }
+      .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+      .orange { color: var(--orange); }
+
+      /* ---------- header ---------- */
+      header.site {
+        position: sticky; top: 0; z-index: 50;
+        background: var(--bg);
+        border-bottom: 3px solid var(--ink);
+      }
+      .site-inner {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 16px; padding: 10px 20px; max-width: 1160px; margin: 0 auto;
+      }
+      .site .logo-img { height: 38px; width: auto; }
+      .site nav { display: none; gap: 26px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
+      .site nav a { color: var(--ink); text-decoration: none; }
+      .site nav a:hover { color: var(--orange-dark); }
+      @media (min-width: 760px) { .site nav { display: flex; } }
+      .btn {
+        display: inline-block; border: 3px solid var(--black);
+        background: var(--orange); color: #0b0b0b;
+        font-family: "Anton", sans-serif; text-transform: uppercase;
+        font-size: 16px; letter-spacing: 0.04em;
+        padding: 10px 20px; text-decoration: none; cursor: pointer;
+        box-shadow: 4px 4px 0 var(--black);
+        transition: transform 0.08s ease, box-shadow 0.08s ease;
+        white-space: nowrap;
+      }
+      .btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--black); }
+      .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--black); }
+      .btn.small { font-size: 14px; padding: 7px 14px; border-width: 2px; box-shadow: 3px 3px 0 var(--black); }
+      @media (prefers-color-scheme: dark) {
+        .btn { border-color: #f4f2ed; box-shadow: 4px 4px 0 #f4f2ed; }
+        .btn:hover { box-shadow: 2px 2px 0 #f4f2ed; }
+        .btn:active { box-shadow: 0 0 0 #f4f2ed; }
+        .btn.small { box-shadow: 3px 3px 0 #f4f2ed; }
+      }
+
+      /* ---------- hero ---------- */
+      .hero { background: var(--black); color: var(--white); border-bottom: 6px solid var(--orange); }
+      .hero-inner {
+        display: grid; gap: 28px; align-items: center;
+        padding-top: 48px; padding-bottom: 56px;
+      }
+      @media (min-width: 900px) {
+        .hero-inner { grid-template-columns: 1.5fr 1fr; padding-top: 72px; padding-bottom: 84px; }
+      }
+      .hero h1 { font-size: clamp(52px, 9.5vw, 108px); margin: 0 0 18px; }
+      .hero .sub {
+        font-size: clamp(19px, 2.6vw, 24px); line-height: 1.4;
+        color: var(--on-black-muted); max-width: 34ch; margin: 0 0 30px; font-weight: 500;
+      }
+      .hero .sub strong { color: var(--white); font-weight: 800; }
+      .hero-face { justify-self: center; width: min(210px, 44vw); filter: invert(1); }
+      @media (min-width: 900px) { .hero-face { width: 100%; max-width: 240px; } }
+
+      /* ---------- waitlist form ---------- */
+      .waitlist { max-width: 520px; }
+      .waitlist .fields { display: flex; gap: 0; flex-wrap: wrap; }
+      .waitlist input[type="email"] {
+        flex: 1 1 240px; min-width: 0;
+        font: inherit; font-size: 17px;
+        padding: 13px 14px;
+        border: 3px solid var(--black);
+        background: var(--field-bg); color: var(--ink);
+      }
+      .hero .waitlist input[type="email"] { border-color: var(--white); background: #161616; color: #fff; }
+      .hero .waitlist input[type="email"]::placeholder { color: #8f8c86; }
+      .waitlist input[type="email"]:focus { outline: 3px solid var(--orange); outline-offset: 1px; }
+      .waitlist .btn { border-left-width: 0; box-shadow: none; flex: 0 0 auto; }
+      .hero .waitlist .btn { border-color: var(--white); }
+      .waitlist .btn:hover, .waitlist .btn:active { transform: none; box-shadow: none; background: var(--orange-dark); color: #fff; }
+      .microcopy { font-size: 13.5px; margin: 12px 0 0; color: var(--muted); max-width: 46ch; }
+      .hero .microcopy { color: var(--on-black-muted); }
+      .form-error { display: none; margin: 10px 0 0; font-weight: 700; font-size: 15px; color: var(--error); }
+      .hero .form-error { color: #ff8a66; }
+      .form-error.show { display: block; }
+      .form-done {
+        border: 3px solid var(--orange); padding: 18px 20px; max-width: 520px;
+        background: rgba(255, 90, 31, 0.08);
+      }
+      .form-done .display { font-size: 26px; margin: 0 0 6px; }
+      .form-done p { margin: 0; font-size: 15.5px; }
+      .shake { animation: shake 0.35s ease; }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-6px); }
+        75% { transform: translateX(6px); }
+      }
+      @media (prefers-reduced-motion: reduce) { .shake { animation: none; } }
+
+      /* ---------- ticker ---------- */
+      .ticker {
+        background: var(--orange); color: #0b0b0b; overflow: hidden;
+        border-bottom: 3px solid var(--black); padding: 9px 0;
+      }
+      .ticker-track {
+        display: flex; gap: 0; width: max-content;
+        font-family: "Anton", sans-serif; text-transform: uppercase;
+        font-size: 17px; letter-spacing: 0.05em; white-space: nowrap;
+        animation: tick 30s linear infinite;
+      }
+      .ticker-track span { padding-right: 14px; }
+      @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+      /* ---------- sections ---------- */
+      section.block { padding: 64px 0; }
+      @media (min-width: 900px) { section.block { padding: 88px 0; } }
+      h2.display { font-size: clamp(36px, 5.6vw, 58px); margin: 0 0 16px; }
+      .lede { font-size: 19px; max-width: 62ch; color: var(--muted); margin: 0 0 8px; }
+      .lede strong { color: var(--ink); }
+
+      /* stat bars */
+      .stat-grid { display: grid; gap: 40px; margin-top: 40px; }
+      @media (min-width: 900px) { .stat-grid { grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; } }
+      .bar-row { margin-bottom: 30px; }
+      .bar-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+      .bar-label { font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; font-size: 15px; }
+      .bar-num { font-family: "Anton", sans-serif; font-size: 56px; line-height: 1; }
+      .bar-track { height: 34px; border: 3px solid var(--ink); background: var(--panel); }
+      .bar-fill { height: 100%; background: var(--ink); transform-origin: left center; }
+      .bar-fill.orange-fill { background: var(--orange); }
+      .bar-fill.armed { transform: scaleX(0); transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+      .bar-fill.armed.on { transform: scaleX(1); }
+      @media (prefers-reduced-motion: reduce) { .bar-fill.armed { transition: none; } }
+      .source-note { font-size: 13.5px; color: var(--muted); margin-top: 6px; }
+      .stat-side p { font-size: 18px; margin: 0 0 16px; max-width: 52ch; }
+      .stat-side p strong { background: var(--orange); color: #0b0b0b; padding: 0 5px; }
+
+      /* the fix */
+      .fix-grid { display: grid; gap: 40px; align-items: center; }
+      @media (min-width: 900px) { .fix-grid { grid-template-columns: 1.05fr 1fr; gap: 56px; } }
+      .photo-frame { border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--orange); }
+      .photo-frame img { width: 100%; height: auto; }
+      .spec-list { list-style: none; margin: 26px 0 0; padding: 0; border-top: 3px solid var(--ink); }
+      .spec-list li {
+        display: flex; gap: 14px; align-items: baseline;
+        padding: 13px 2px; border-bottom: 1px solid var(--line-soft);
+        font-size: 17px;
+      }
+      .spec-list .k {
+        font-family: "Anton", sans-serif; text-transform: uppercase;
+        font-size: 15px; letter-spacing: 0.04em; flex: 0 0 118px; color: var(--orange-dark);
+      }
+      @media (prefers-color-scheme: dark) { .spec-list .k { color: var(--orange); } }
+
+      /* product shot */
+      .product-shot { margin: 56px auto 0; max-width: 400px; }
+      .product-shot figcaption { margin-top: 20px; font-size: 15.5px; color: var(--muted); text-align: center; }
+      .product-shot figcaption strong { color: var(--ink); }
+
+      /* routine compare */
+      .compare { background: var(--panel-alt); border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); }
+      .compare-grid { display: grid; gap: 24px; margin-top: 36px; }
+      @media (min-width: 860px) { .compare-grid { grid-template-columns: 1fr 1fr; } }
+      .routine {
+        border: 3px solid var(--ink); background: var(--panel); padding: 26px 26px 22px;
+      }
+      .routine.bad { opacity: 0.92; }
+      .routine.good { background: var(--black); color: var(--white); border-color: var(--black); box-shadow: 8px 8px 0 var(--orange); }
+      @media (prefers-color-scheme: dark) { .routine.good { border-color: var(--line); } }
+      .routine h3 { font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 24px; margin: 0 0 4px; font-weight: 400; }
+      .routine .time { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 18px; }
+      .routine.good .time { color: var(--orange); }
+      .routine ol, .routine ul { margin: 0; padding-left: 22px; font-size: 16.5px; }
+      .routine li { margin-bottom: 7px; }
+      .routine.bad li { color: var(--muted); }
+      .routine.bad li s { text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
+      .routine .verdict { margin: 18px 0 0; font-weight: 700; font-size: 16px; }
+
+      /* calculator */
+      .calc {
+        margin-top: 44px; border: 3px solid var(--ink); background: var(--panel);
+        padding: 26px;
+      }
+      .calc h3 { font-family: "Anton", sans-serif; text-transform: uppercase; font-weight: 400; font-size: 24px; margin: 0 0 6px; }
+      .calc p { margin: 0 0 18px; color: var(--muted); max-width: 60ch; }
+      .calc-controls { display: grid; gap: 20px; }
+      @media (min-width: 860px) { .calc-controls { grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; } }
+      .calc label { font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.05em; display: block; margin-bottom: 10px; }
+      .calc input[type="range"] { width: 100%; accent-color: var(--orange); height: 32px; }
+      .calc .mins { font-family: "Anton", sans-serif; font-size: 30px; }
+      .calc-out { border-left: 5px solid var(--orange); padding-left: 18px; }
+      .calc-out .big { font-family: "Anton", sans-serif; font-size: clamp(30px, 4.5vw, 42px); line-height: 1.05; text-transform: uppercase; margin: 0 0 6px; }
+      .calc-out p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+      /* faq */
+      .faq-list { margin-top: 34px; border-top: 3px solid var(--ink); }
+      details.faq { border-bottom: 1px solid var(--line-soft); }
+      details.faq summary {
+        cursor: pointer; list-style: none; padding: 20px 34px 20px 2px; position: relative;
+        font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em;
+      }
+      details.faq summary::-webkit-details-marker { display: none; }
+      details.faq summary::after {
+        content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+        font-size: 28px; color: var(--orange-dark);
+      }
+      details.faq[open ] summary::after { content: "–"; }
+      @media (prefers-color-scheme: dark) { details.faq summary::after { color: var(--orange); } }
+      details.faq .a { padding: 0 2px 22px; max-width: 68ch; color: var(--muted); font-size: 16.5px; }
+      details.faq .a strong { color: var(--ink); }
+
+      /* final cta */
+      .final { background: var(--black); color: var(--white); border-top: 6px solid var(--orange); }
+      .final-inner { text-align: center; padding-top: 72px; padding-bottom: 80px; }
+      .final .logo-img { height: 54px; width: auto; margin: 0 auto 30px; filter: invert(1); }
+      .final h2 { font-size: clamp(40px, 7vw, 76px); margin: 0 0 14px; }
+      .final .sub { color: var(--on-black-muted); font-size: 19px; max-width: 52ch; margin: 0 auto 30px; }
+      .final .waitlist { margin: 0 auto; text-align: left; }
+      .final .microcopy { text-align: center; margin-left: auto; margin-right: auto; }
+
+      footer.site-foot { padding: 30px 0 40px; font-size: 14px; color: var(--muted); }
+      .foot-inner { display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; justify-content: space-between; }
+      footer.site-foot .logo-img { height: 26px; width: auto; }
+      footer.site-foot p { margin: 0; max-width: 62ch; }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="site-inner">
+        <img class="logo-img" src="assets/logo-lockup.jpg" alt="Guy Screen" />
+        <nav>
+          <a href="#problem">The Problem</a>
+          <a href="#fix">The Fix</a>
+          <a href="#routine">The Routine</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="btn small" href="#join">Join the list</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero" id="join">
+      <div class="wrap hero-inner">
+        <div>
+          <h1 class="display">The cheapest <span class="orange">looksmax</span> there is.</h1>
+          <p class="sub">No jaw exercises. No ten-step routine. <strong>Just SPF and a little self-respect.</strong></p>
+          <form class="waitlist" data-form novalidate>
+            <div class="fields">
+              <input type="email" name="email" placeholder="your@email.com" autocomplete="email" aria-label="Email address" required />
+              <button class="btn" type="submit">Get on the list</button>
+            </div>
+            <p class="form-error" role="alert"></p>
+            <p class="microcopy">One email when it launches. That's the whole deal — no spam, no 14-part drip campaign about your “skin journey.”</p>
+          </form>
+        </div>
+        <img class="hero-face" src="assets/logo-face.png" alt="The Guy Screen guy — smirking, wearing aviator sunglasses" />
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track" id="tickerTrack">
+        <span>No jaw exercises /// No mewing /// No ten-step routine /// No $90 serums /// Just SPF ///&nbsp;</span>
+        <span>No jaw exercises /// No mewing /// No ten-step routine /// No $90 serums /// Just SPF ///&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- THE PROBLEM -->
+    <section class="block" id="problem">
+      <div class="wrap">
+        <h2 class="display">Guys are skipping the <span class="orange">one step</span> that works</h2>
+        <p class="lede">Ask a room of men about sunscreen and you'll get the same answer: <strong>“Yeah, I should probably…”</strong> Then nothing. The numbers are worse than the shrug suggests.</p>
+        <div class="stat-grid">
+          <div>
+            <div class="bar-row">
+              <div class="bar-head">
+                <span class="bar-label">Men who wear it regularly</span>
+                <span class="bar-num">12%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill orange-fill" style="width:12%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-head">
+                <span class="bar-label">Women who wear it regularly</span>
+                <span class="bar-num">29%</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" style="width:29%"></div></div>
+            </div>
+            <p class="source-note">Share of U.S. adults who regularly use sunscreen. Source: CDC.</p>
+          </div>
+          <div class="stat-side">
+            <p>Meanwhile, the sun is doing reps on your face every single day — driving, yard work, sitting by a window, all of it. Dermatologists estimate <strong>up to 80% of visible skin aging comes from UV</strong>, not from birthdays.</p>
+            <p>So the wrinkles, the spots, the leather-wallet look at 50? Mostly not genetics. Mostly a step almost no guy takes, that takes <strong>twenty seconds</strong>.</p>
+            <p>That's the entire idea behind Guy Screen. Not a skincare routine. Damage control.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE FIX -->
+    <section class="block" id="fix" style="padding-top: 0;">
+      <div class="wrap">
+        <div class="fix-grid">
+          <div class="photo-frame">
+            <img src="assets/mirror-guy.jpg" alt="Illustration of a guy in a work shirt smearing a streak of sunscreen across his nose in the bathroom mirror" />
+          </div>
+          <div>
+            <h2 class="display">One tube. <span class="orange">Twenty seconds.</span> Done.</h2>
+            <p class="lede">Guy Screen is sunscreen built like a tool, not a spa product. It lives next to your toothbrush, goes on right after you brush your teeth, and then you forget it exists — which is more than can be said for your forehead in July.</p>
+            <ul class="spec-list">
+              <li><span class="k">Protection</span><span>SPF 50, broad spectrum. The real stuff, not a moisturizer with SPF seasoning.</span></li>
+              <li><span class="k">Finish</span><span>Matte. No white cast, no grease slick, no “why is he shiny” at the office.</span></li>
+              <li><span class="k">Smell</span><span>Basically nothing. You will not smell like a piña colada or a beach gift shop.</span></li>
+              <li><span class="k">Effort</span><span>One step. Squeeze, smear, leave the house. Beard-friendly, bald-head approved.</span></li>
+              <li><span class="k">Price</span><span>Priced like something you'll actually use up — not a $90 serum you'll ration like medicine.</span></li>
+            </ul>
+          </div>
+        </div>
+        <figure class="product-shot">
+          <div class="photo-frame">
+            <img src="assets/tube-mockup.webp" alt="Guy Screen SPF 50 sunscreen tube — matte black with an orange SPF 50 band and the Guy Screen face logo" width="1376" height="1824" loading="lazy" />
+          </div>
+          <figcaption>The tube itself. <strong>SPF 50, 3 fl oz</strong> — matte black, orange band, built for the bathroom counter.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ROUTINE COMPARE -->
+    <section class="block compare" id="routine">
+      <div class="wrap">
+        <h2 class="display">Your two options</h2>
+        <p class="lede">The internet has a plan for your face. It's ten products long and sounds exhausting, because it is.</p>
+        <div class="compare-grid">
+          <div class="routine bad">
+            <h3>The 10-step routine</h3>
+            <p class="time">~25 minutes a day · a shelf of products · forever</p>
+            <ol>
+              <li><s>Cleanser</s></li>
+              <li><s>Toner</s></li>
+              <li><s>Essence</s> (water, but expensive)</li>
+              <li><s>Serum #1</s></li>
+              <li><s>Serum #2</s> (yes, a second one)</li>
+              <li><s>Eye cream</s> (smaller jar, bigger price)</li>
+              <li><s>Moisturizer</s></li>
+              <li><s>Gua sha stone</s></li>
+              <li><s>Jaw exerciser</s></li>
+              <li>SPF — the step buried at #10 that was doing the work all along</li>
+            </ol>
+            <p class="verdict">Verdict: a part-time job, for your face.</p>
+          </div>
+          <div class="routine good">
+            <h3>The Guy Screen routine</h3>
+            <p class="time">~20 seconds a day · one tube · that's it</p>
+            <ol>
+              <li>Brush your teeth.</li>
+              <li>Put Guy Screen on your face.</li>
+              <li>Leave.</li>
+            </ol>
+            <p class="verdict">Verdict: step 10, promoted to the whole routine.</p>
+          </div>
+        </div>
+
+        <!-- calculator -->
+        <div class="calc">
+          <h3>Do the math on “I don't have time”</h3>
+          <p>Drag the slider to whatever a full routine would supposedly take you each morning. We'll convert it into the only unit that matters: hours of your life, per year.</p>
+          <div class="calc-controls">
+            <div>
+              <label for="mins">Daily routine length</label>
+              <input type="range" id="mins" min="1" max="30" value="10" step="1" />
+              <div><span class="mins" id="minsOut">10</span> minutes a day</div>
+            </div>
+            <div class="calc-out">
+              <p class="big" id="calcBig">That's 61 hours a year</p>
+              <p id="calcLine">Guy Screen takes 20 seconds a day — about 2 hours a year. You just got 59 hours back. That's a long weekend, every year, forever.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block" id="faq">
+      <div class="wrap">
+        <h2 class="display">Fair questions</h2>
+        <div class="faq-list">
+          <details class="faq">
+            <summary>Is this a real product I can buy?</summary>
+            <div class="a"><strong>Not yet — that's the point of the list.</strong> Guy Screen is being built if, and only if, enough guys actually want it. Get on the waitlist and you'll get exactly one email when there's something to buy. If the demand isn't there, the idea dies quietly and nobody's card gets charged for anything.</div>
+          </details>
+          <details class="faq">
+            <summary>Is SPF actually a “looksmax”?</summary>
+            <div class="a">It's the only one with a straight face. Most of what people call “aging” — wrinkles, sun spots, sagging, that weathered look — is UV damage, not time. <strong>Every dermatologist on Earth will tell you sunscreen is the highest-return thing you can put on your face.</strong> The jaw gadgets have a subreddit. SPF has decades of evidence.</div>
+          </details>
+          <details class="faq">
+            <summary>Will it make me look greasy or ghost-white?</summary>
+            <div class="a"><strong>No.</strong> That's half the reason most guys quit sunscreen, so it's half the product brief: matte finish, no white cast, nothing sitting on top of your skin announcing itself. It should look like you did nothing — because looking like you did nothing is the entire goal.</div>
+          </details>
+          <details class="faq">
+            <summary>I work outside. Is this strong enough?</summary>
+            <div class="a">SPF 50, broad spectrum, made to be reapplied like you're supposed to — a real coat every couple of hours in direct sun. It's not magic armor; it's the difference between doing the basics right and raw-dogging the sun for eight hours a day.</div>
+          </details>
+          <details class="faq">
+            <summary>What about my beard / bald head?</summary>
+            <div class="a">Beard: work it in, it disappears. Bald head: congratulations, you have more face than the rest of us — <strong>you need this the most.</strong> Ears and the back of the neck too. Sunburn finds the spots you forgot, every time.</div>
+          </details>
+          <details class="faq">
+            <summary>Why not just buy regular sunscreen?</summary>
+            <div class="a">You can, and honestly, any sunscreen beats none. But most of it is built for the beach bag — thick, shiny, smells like coconut, lives in a cabinet you never open. Guy Screen is built for the bathroom counter and a twenty-second habit. <strong>The best sunscreen is the one that's actually on your face.</strong></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <div class="final">
+      <div class="wrap final-inner">
+        <img class="logo-img" src="assets/logo-lockup.jpg" alt="Guy Screen" />
+        <h2 class="display">Age like whiskey.<br />Not like milk.</h2>
+        <p class="sub">Sunscreen for men who forgot sunscreen existed. Get on the list and be first in line when the first batch drops.</p>
+        <form class="waitlist" data-form novalidate>
+          <div class="fields">
+            <input type="email" name="email" placeholder="your@email.com" autocomplete="email" aria-label="Email address" required />
+            <button class="btn" type="submit">Get on the list</button>
+          </div>
+          <p class="form-error" role="alert"></p>
+          <p class="microcopy">One email at launch. No spam, no “content,” no unsubscribe guilt trips.</p>
+        </form>
+      </div>
+    </div>
+
+    <footer class="site-foot">
+      <div class="wrap foot-inner">
+        <img class="logo-img" src="assets/logo-lockup.jpg" alt="Guy Screen" />
+        <p>Guy Screen is in development — this page is a demand test, and the waitlist is how the call gets made. Sunscreen-use figures: CDC. Not medical advice; for that, see a dermatologist, ideally before the sun makes the introduction.</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---- waitlist forms ----
+           Signups post to the Formspree endpoint configured below, and are
+           then confirmed in-page. */
+        var WAITLIST_ENDPOINT = "https://formspree.io/f/xljgvobw";
+
+        var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        function wireForm(form) {
+          var input = form.querySelector('input[type="email"]');
+          var error = form.querySelector(".form-error");
+          form.addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            var email = (input.value || "").trim();
+            if (!EMAIL_RE.test(email)) {
+              error.textContent = "That email doesn't look right. One more try.";
+              error.classList.add("show");
+              form.classList.remove("shake");
+              void form.offsetWidth;
+              form.classList.add("shake");
+              input.focus();
+              return;
+            }
+            error.classList.remove("show");
+            if (WAITLIST_ENDPOINT) {
+              fetch(WAITLIST_ENDPOINT, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                body: JSON.stringify({ email: email })
+              }).catch(function () { /* confirmation copy below stays honest about next step */ });
+            }
+            var done = document.createElement("div");
+            done.className = "form-done";
+            done.innerHTML = '<p class="display">You\'re in.</p><p>We\'ve got <strong></strong>. One email when Guy Screen launches — that\'s it. Now go enjoy the sun. Carefully.</p>';
+            done.querySelector("strong").textContent = email;
+            form.replaceWith(done);
+          });
+          input.addEventListener("input", function () { error.classList.remove("show"); });
+        }
+        document.querySelectorAll("form[data-form]").forEach(wireForm);
+
+        /* ---- stat bars animate in (final widths are inline in the HTML,
+           so the proportions are correct even before/without animation) ---- */
+        var fills = document.querySelectorAll(".bar-fill");
+        var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if ("IntersectionObserver" in window && !reduceMotion) {
+          fills.forEach(function (f) { f.classList.add("armed"); });
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                fills.forEach(function (f) { f.classList.add("on"); });
+                io.disconnect();
+              }
+            });
+          }, { threshold: 0.3 });
+          var first = document.querySelector(".bar-track");
+          if (first) io.observe(first);
+        }
+
+        /* ---- routine calculator ---- */
+        var mins = document.getElementById("mins");
+        var minsOut = document.getElementById("minsOut");
+        var calcBig = document.getElementById("calcBig");
+        var calcLine = document.getElementById("calcLine");
+        var GS_YEAR = 20 * 365 / 3600; /* 20 seconds a day, in hours per year */
+        function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
+        function updateCalc() {
+          var m = parseInt(mins.value, 10);
+          minsOut.textContent = m;
+          var hours = m * 365 / 60;
+          var saved = hours - GS_YEAR;
+          calcBig.textContent = "That's " + fmt(hours) + " hours a year";
+          var tail;
+          if (saved < 10) tail = "Even at that speed, SPF-only still wins — and it's the only step with evidence behind it.";
+          else if (saved < 40) tail = "You'd get about " + fmt(saved) + " of those hours back by cutting everything except the SPF. That's a full work week, every year.";
+          else if (saved < 90) tail = "You just got " + fmt(saved) + " hours back. That's a long weekend, every year, forever.";
+          else tail = fmt(saved) + " hours back. That's over a week of your life, annually, spent not rubbing things into your face in a specific order.";
+          calcLine.textContent = "Guy Screen takes 20 seconds a day — about 2 hours a year. " + tail;
+        }
+        mins.addEventListener("input", updateCalc);
+        updateCalc();
+      })();
+    </script>
+  </body>
+</html>
